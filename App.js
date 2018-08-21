@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
 import {withAuthenticator} from 'aws-amplify-react-native';
-import { Storage } from 'aws-amplify'
+import { Storage, API } from 'aws-amplify'
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -17,6 +17,12 @@ const instructions = Platform.select({
     'Double tap R on your keyboard to reload,\n' +
     'Shake or press menu button for dev menu',
 });
+
+
+async componentDidMount() {
+  const data = await API.get('sampleCloudApi', '/items')
+  console.log('data: ', data)
+}
 
 
 type Props = {};
